@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Merge Words</title>
+</head>
+<body>
+	{% if flag %}
+		<form method="post">
+			{% csrf_token %}
+			{% for form in formset %}
+				{{ form }}
+			{% endfor %}
+			<label for="separator">Separator</label>
+			<select name ="separator" id="separator">
+				<option value="nothing">Nothing</option>
+				<option value="minus">Minus</option>
+				<option value="space">Space</option>
+				<option value="plus">Plus</option>
+			</select>
+			<label for="wrapper">wrapper</label>
+			<select name ="wrapper" id="wrapper">
+				<option value="nothing">Nothing</option>
+				<option value="quotes">" "</option>
+				<option value="bracket">[ ]</option>
+			</select>
+			<input type="submit" value="Merge">
+		</form>
+
+		<div class="output">
+			{% if wrapper == 'quotes' %}
+			<textarea id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
+			{% elif wrapper == 'bracket' %}
+			<textarea id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
+			{% else %}
+			<textarea id="dataoutput">{{ data | join:"&#10;" }}</textarea>
+			{% endif %}
+		</div>
+		<button onclick="myFunction()">Copy</button>
+
+	{% else %}
+		<form method="post">
+			{% csrf_token %}
+			{% for form in formset %}
+				{{ form }}
+			{% endfor %}
+			<label for="separator">Separator</label>
+			<select name ="separator" id="separator">
+				<option value="nothing">Nothing</option>
+				<option value="minus">Minus</option>
+				<option value="space">Space</option>
+				<option value="plus">Plus</option>
+			</select>
+			<label for="wrapper">wrapper</label>
+			<select name ="wrapper" id="wrapper">
+				<option value="nothing">Nothing</option>
+				<option value="quotes">" "</option>
+				<option value="bracket">[ ]</option>
+			</select>
+			<input type="submit" value="Merge">
+		</form>
+	{% endif %}
+</body>
+</html>
+
+<script>
+function myFunction() {
+  var copyText = document.getElementById("dataoutput");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+</script>
