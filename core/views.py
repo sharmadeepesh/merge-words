@@ -49,7 +49,7 @@ def get_separator(separator):
 		return '-'
 	elif separator == 'plus':
 		return '+'
-	elif separator == 'space':
+	elif separator == 'space' or separator == "nothing":
 		return ' '
 
 def get_data(first, second, third):

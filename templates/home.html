@@ -30,9 +30,11 @@
 
 		<div class="output">
 			{% if wrapper == 'quotes' %}
-			<textarea id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
+			<textarea rows="10" id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
 			{% elif wrapper == 'bracket' %}
-			<textarea id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
+			<textarea rows="10" id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
+			{% elif wrapper == 'nothing' %}
+			<textarea rows="10" id="dataoutput">{% for elem in data %}{{elem}}&#10;{% endfor %}</textarea>
 			{% else %}
 			<textarea id="dataoutput">{{ data | join:"&#10;" }}</textarea>
 			{% endif %}
