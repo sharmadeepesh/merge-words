@@ -18,11 +18,13 @@
         </p>
 
     </nav>
-    <codes class="container" id="tab">
+
+
+    <codes class="container">
         <form method="POST" action="{% url 'merge' %}">
             {% csrf_token %}
             <div class="option">
-                <label for="separator">Separator</label>
+                <label style="font-size: 23px !important;" for="separator">Separator</label>
                 <div class="select is-rounded">
                     <select name="separator" id="separator">
                     <option value="nothing">Nothing</option>
@@ -33,7 +35,7 @@
                 </div>
             </div>
             <div class="option">
-                <label for="wrapper">Wrapper</label>
+                <label style="font-size: 23px !important;" for="wrapper">Wrapper</label>
                 <div class="select is-rounded">
                     <select name="wrapper" id="wrapper">
                     <option value="nothing">Nothing</option>
@@ -48,6 +50,7 @@
 
         <div class="columns">
             <div class="column">
+                <h3 style="background-color: #00d1b2;color:white;" class="has-text-centered">Word</h3>
                 <div class="field">
                     <div class="control">
                         <textarea class="textarea is-primary" name="form-0-word" cols="40" rows="10" id="id_form-0-word" id="dataoutput"></textarea>
@@ -55,6 +58,7 @@
                 </div>
             </div>
             <div class="column">
+                <h3 style="background-color: #00d1b2;color:white;" class="has-text-centered">Word</h3>
                 <div class="field">
                     <div class="control">
                         <textarea class="textarea is-primary" name="form-1-word" cols="40" rows="10" id="id_form-1-word" id="dataoutput"></textarea>
@@ -62,6 +66,7 @@
                 </div>
             </div>
             <div class="column">
+                <h3 style="background-color: #00d1b2;color:white;" class="has-text-centered">Word</h3>
                 <div class="field">
                     <div class="control">
                         <textarea class="textarea is-primary" name="form-2-word" cols="40" rows="10" id="id_form-2-word" id="dataoutput"></textarea>
@@ -71,16 +76,17 @@
 
             {% if flag %}
                 <div class="column">
+                    <h3 style="background-color: #00d1b2;color:white;" class="has-text-centered">Output</h3>
                     <div class="field">
                         <div class="control">
                             {% if wrapper == 'quotes' %}
-                            <textarea class="textarea is-primary" id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
+                            <textarea class="textarea is-primary" cols="30" rows="10" id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
                             {% elif wrapper == 'bracket' %}
-                            <textarea class="textarea is-primary" id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
+                            <textarea class="textarea is-primary" cols="30" rows="10" id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
                             {% elif wrapper == 'nothing' %}
-                            <textarea class="textarea is-primary" id="dataoutput">{% for elem in data %}{{elem}}&#10;{% endfor %}</textarea>
+                            <textarea class="textarea is-primary" cols="30" rows="10" id="dataoutput">{% for elem in data %}{{elem}}&#10;{% endfor %}</textarea>
                             {% else %}
-                            <textarea class="textarea is-primary" id="dataoutput">{{ data | join:"&#10;" }}</textarea>
+                            <textarea class="textarea is-primary" cols="30" rows="10" id="dataoutput">{{ data | join:"&#10;" }}</textarea>
                             {% endif %}
                         </div>
                     </div>
