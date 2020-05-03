@@ -3,75 +3,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Merge Words</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Merge Words</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 <body>
-	{% if flag %}
-		<form method="post">
-			{% csrf_token %}
-			{% for form in formset %}
-				{{ form }}
-			{% endfor %}
-			<label for="separator">Separator</label>
-			<select name ="separator" id="separator">
-				<option value="nothing">Nothing</option>
-				<option value="minus">Minus</option>
-				<option value="space">Space</option>
-				<option value="plus">Plus</option>
-			</select>
-			<label for="wrapper">wrapper</label>
-			<select name ="wrapper" id="wrapper">
-				<option value="nothing">Nothing</option>
-				<option value="quotes">" "</option>
-				<option value="bracket">[ ]</option>
-			</select>
-			<input type="submit" value="Merge">
-		</form>
+    <nav class="level has-background-primary ">
+        <p class="level-item has-text-centered" style="padding-top: 10px; padding-bottom: 10px;">
+            <img src="{% static 'img/logo.png' %}" alt="" style="height: 60px;">
+        </p>
 
-		<div class="output">
-			{% if wrapper == 'quotes' %}
-			<textarea rows="10" id="dataoutput">{% for elem in data %}"{{elem}}"&#10;{% endfor %}</textarea>
-			{% elif wrapper == 'bracket' %}
-			<textarea rows="10" id="dataoutput">{% for elem in data %}[{{elem}}]&#10;{% endfor %}</textarea>
-			{% elif wrapper == 'nothing' %}
-			<textarea rows="10" id="dataoutput">{% for elem in data %}{{elem}}&#10;{% endfor %}</textarea>
-			{% else %}
-			<textarea id="dataoutput">{{ data | join:"&#10;" }}</textarea>
-			{% endif %}
-		</div>
-		<button onclick="myFunction()">Copy</button>
-
-	{% else %}
-		<form method="post">
-			{% csrf_token %}
-			{% for form in formset %}
-				{{ form }}
-			{% endfor %}
-			<label for="separator">Separator</label>
-			<select name ="separator" id="separator">
-				<option value="nothing">Nothing</option>
-				<option value="minus">Minus</option>
-				<option value="space">Space</option>
-				<option value="plus">Plus</option>
-			</select>
-			<label for="wrapper">wrapper</label>
-			<select name ="wrapper" id="wrapper">
-				<option value="nothing">Nothing</option>
-				<option value="quotes">" "</option>
-				<option value="bracket">[ ]</option>
-			</select>
-			<input type="submit" value="Merge">
-		</form>
-	{% endif %}
+    </nav>
+    <!--Hero Section-->
+    <div class="columns" style="margin-top:70px">
+        <div class="column">
+            <div class="herop">
+                <h1 class="title is-1 has-text-left-mobile is-size-1-desktop">MergeWords 2.0</h1>
+                <h2 class="subtitle is-4" style="margin-top: 20px;">Tired Of Merging Multiple Words? </br>
+                    MergeWords 2.0 will do the job for you fast and easy.
+                </h2>
+                <a href="{% url 'merge' %}"><button class="button is-primary is-focused is-rounded" style="padding-left: 30px; padding-right: 30px; margin-top: 30px;">
+                Merge Now</button></a>
+            </div>
+        </div>
+        <div class="column">
+            <img src="{% static 'img/2810819.png' %}" alt="" style="width: auto;">
+        </div>
+    </div>
 </body>
-</html>
-
-<script>
-function myFunction() {
-  var copyText = document.getElementById("dataoutput");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999);
-  document.execCommand("copy");
-  alert("Copied the text: " + copyText.value);
-}
-</script>

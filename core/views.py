@@ -5,6 +5,9 @@ import itertools
 
 # Create your views here.
 def home(request):
+	return render(request, 'home.html')
+
+def merge(request):
 	final = []
 	form = formset_factory(wordForm, extra=3)
 	formset = form()
@@ -33,7 +36,7 @@ def home(request):
 				'flag':'True',
 				'wrapper':wrapper,
 			}
-		return render(request,'home.html', context=context)
+		return render(request,'merge.html', context=context)
 
 	else:
 		form = formset_factory(wordForm, extra=3)
@@ -42,7 +45,7 @@ def home(request):
 			'formset':formset,
 			'flag':'False',
 		}
-		return render(request,'home.html',context=context)
+		return render(request,'merge.html',context=context)
 
 def get_separator(separator):
 	if separator == "minus":
